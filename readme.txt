@@ -1,0 +1,3 @@
+- Zbudowanie bazy Nemesis, Magów i rynku zasobów.
+- losowanie
+- walidacja i wagi przy losowaniu
