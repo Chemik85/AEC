@@ -1,6 +1,6 @@
 package pl.lison.aec.handlers;
 
-abstract class BaseCommandHandler implements CommandHandler{
+abstract class BaseCommandHandler implements CommandHandler {
 
     @Override
     public boolean supports(String name) {

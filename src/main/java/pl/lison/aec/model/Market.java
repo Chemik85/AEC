@@ -3,7 +3,7 @@ package pl.lison.aec.model;
 public class Market {
     private String name;
     private String type;
-    private  int cost;
+    private int cost;
 
     public Market() {
     }
@@ -12,6 +12,12 @@ public class Market {
         this.name = name;
         this.type = type;
         this.cost = cost;
+    }
+
+    public Market(String marketName, String marketType, String marketCost) {
+        this.name = marketName;
+        this.type = marketType;
+        this.cost = Integer.parseInt(marketCost);
     }
 
     public String getName() {
@@ -36,5 +42,14 @@ public class Market {
 
     public void setCost(int cost) {
         this.cost = cost;
+    }
+
+    @Override
+    public String toString() {
+        return "Market{" +
+                "name='" + name + '\'' +
+                ", type='" + type + '\'' +
+                ", cost=" + cost +
+                '}';
     }
 }

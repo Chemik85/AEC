@@ -11,9 +11,7 @@ public class HelpCommandHandler extends BaseCommandHandler {
         System.out.println("Help");
         System.out.println("Allowed command: help, quit, nemesis, mage, market");
 
-
     }
-
 
     @Override
     protected String getCommandName() {

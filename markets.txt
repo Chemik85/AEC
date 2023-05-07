@@ -1,0 +1,1 @@
+[{"name":"kryształ","type":"klejnot","cost":0},{"name":"Iskra","type":"zaklęcie","cost":0}]

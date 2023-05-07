@@ -1,5 +1,6 @@
 package pl.lison.aec.model;
 
+
 public class Nemesis {
     private String name;
     private int level;
@@ -10,6 +11,11 @@ public class Nemesis {
     public Nemesis(String name, int level) {
         this.name = name;
         this.level = level;
+    }
+
+    public Nemesis(String nemesisName, String nemesisLevel) {
+        this.name = nemesisName;
+        this.level = Integer.parseInt(nemesisLevel);
     }
 
     public String getName() {
@@ -26,5 +32,13 @@ public class Nemesis {
 
     public void setLevel(int level) {
         this.level = level;
+    }
+
+    @Override
+    public String toString() {
+        return "Nemesis{" +
+                "name='" + name + '\'' +
+                ", level=" + level +
+                '}';
     }
 }

@@ -1,11 +1,13 @@
 package pl.lison.aec.input;
 
+import pl.lison.aec.Action;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class UserInputCommand {
     private String command;
-    private String action;
+    private Action action;
     private List<String> param;
 
     //market, add, MarketType, MarketName, MarketCost
@@ -16,10 +18,10 @@ public class UserInputCommand {
                 command = array[0];
             }
             if (array.length > 1) {
-                action = array[1];
+                action = Action.of(array[1]);
             }
             param = new ArrayList<>();
-            for(int i =2; i< array.length; i++){
+            for (int i = 2; i < array.length; i++) {
                 param.add(array[i]);
             }
         }
@@ -29,7 +31,7 @@ public class UserInputCommand {
         return command;
     }
 
-    public String getAction() {
+    public Action getAction() {
         return action;
     }
 
