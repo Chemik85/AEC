@@ -2,6 +2,7 @@ package pl.lison.aec.input;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import pl.lison.aec.Action;
 
 import java.util.List;
 
@@ -18,33 +19,33 @@ class UserInputCommandTest {
         UserInputCommand userInputCommand = new UserInputCommand(input);
         //then
         assertEquals("mage", userInputCommand.getCommand());
-        assertEquals("add", userInputCommand.getAction());
+        assertEquals(Action.ADD, userInputCommand.getAction());
         assertLinesMatch(List.of("MageName"), userInputCommand.getParam());
     }
 
     @Test
     void shouldBuildCorrectUserInputCommandWithMultipleParams() {
         //given
-        String input = "command, action, param 1, param 2, param 3";
+        String input = "command, add, param 1, param 2, param 3";
 
         //when
         UserInputCommand userInputCommand = new UserInputCommand(input);
         //then
         assertEquals("command", userInputCommand.getCommand());
-        assertEquals("action", userInputCommand.getAction());
+        assertEquals(Action.ADD, userInputCommand.getAction());
         assertLinesMatch(List.of("param 1", "param 2", "param 3"), userInputCommand.getParam());
     }
 
     @Test
     void shouldBuildCorrectUserInputCommandWithoutParams() {
         //given
-        String input = "command, action";
+        String input = "command, add";
 
         //when
         UserInputCommand userInputCommand = new UserInputCommand(input);
         //then
         assertEquals("command", userInputCommand.getCommand());
-        assertEquals("action", userInputCommand.getAction());
+        assertEquals(Action.ADD, userInputCommand.getAction());
         assertTrue(userInputCommand.getParam().isEmpty());
     }
 
