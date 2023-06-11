@@ -28,6 +28,7 @@ public class AeonsEndCampain {
         handlers.add(new MageCommandHandler());
         handlers.add(new NemesisCommandHandler());
         handlers.add(new MarketCommandHandler());
+        handlers.add(new ContentCommandHandler());
 
         while (applicationLoop) {
             try {
@@ -49,7 +50,7 @@ public class AeonsEndCampain {
                 applicationLoop = false;
 
             }catch (IllegalArgumentException e){
-                LOG.log(Level.WARNING, "validation exception" + e.getMessage());
+                LOG.log(Level.WARNING, "validation exception " + e.getMessage());
 
             } catch (Exception e) {
                 e.printStackTrace();

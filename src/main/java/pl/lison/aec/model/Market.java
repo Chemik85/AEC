@@ -4,21 +4,30 @@ public class Market {
     private String name;
     private String type;
     private int cost;
+    private Content content;
 
     public Market() {
     }
 
-    public Market(String name, String type, int cost) {
-        this.name = name;
-        this.type = type;
-        this.cost = cost;
-    }
+//    public Market(String name, String type, int cost) {
+//        this.name = name;
+//        this.type = type;
+//        this.cost = cost;
+//    }
 
-    public Market(String marketName, String marketType, String marketCost) {
+    public Market(String marketName, String marketType, String marketCost, Content content) {
         this.name = marketName;
         this.type = marketType;
         this.cost = Integer.parseInt(marketCost);
+        this.content = content;
     }
+
+//    public Market(String marketName, String marketType, String marketCost, Content content) {
+//        this.name = marketName;
+//        this.type = marketType;
+//        this.cost = Integer.parseInt(marketCost);
+//        this.content = content;
+//    }
 
     public String getName() {
         return name;
@@ -44,12 +53,21 @@ public class Market {
         this.cost = cost;
     }
 
+    public Content getContent() {
+        return content;
+    }
+
+    public void setContent(Content content) {
+        this.content = content;
+    }
+
     @Override
     public String toString() {
         return "Market{" +
                 "name='" + name + '\'' +
                 ", type='" + type + '\'' +
                 ", cost=" + cost +
+                ", content=" + content.getName() +
                 '}';
     }
 }

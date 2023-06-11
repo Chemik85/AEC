@@ -1,1 +1,1 @@
-[{"name":"Gnieworodny","level":2},{"name":"Królowa Roju","level":3},{"name":"Maska Kłamstw","level":5},{"name":"Książe Pożeraczy","level":5}]
+[{"name":"Rageborne","level":2,"content":{"name":"Aeon's End"}},{"name":"Carapece Queen","level":3,"content":{"name":"Aeon's End"}},{"name":"Crooked Mask","level":5,"content":{"name":"Aeon's End"}},{"name":"Prince of Gluttons","level":5,"content":{"name":"Aeon's End"}}]

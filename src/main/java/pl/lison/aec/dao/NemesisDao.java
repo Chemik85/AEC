@@ -8,10 +8,11 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
 
 public class NemesisDao {
     private static Logger LOG = Logger.getLogger(NemesisDao.class.getName());
@@ -27,7 +28,6 @@ public class NemesisDao {
             });
         } catch (IOException e) {
             LOG.log(Level.WARNING, "Error on getNemesis", e);
-
             return new ArrayList<>();
         }
     }
@@ -45,6 +45,46 @@ public class NemesisDao {
 
         } catch (IOException e) {
             LOG.log(Level.WARNING, "Error on addNemesis", e);
+        }
+    }
+
+    public List<Nemesis> drawOne() {
+        /**
+         * At the moment, single nemesis randomization is implemented.
+         * Method prepared for drawing more nemesis as part of the "expedition" from Aeon's End New Ages
+         */
+        try {
+            List<List<Nemesis>> nemesisList = Collections.singletonList(findAll());
+            List<Nemesis>[] nemesisArray = nemesisList.toArray(new List[nemesisList.size()]);
+
+            Random random = new Random();
+            List<Nemesis> selectedNemesis = new ArrayList<>();
+
+            List<Nemesis> availableNemesis = new ArrayList<>();
+            for (List<Nemesis> nemesesAll : nemesisArray) {
+                availableNemesis.addAll(nemesesAll);
+            }
+
+            for (int i = 0; i < 1; i++) {
+                int randomIndex = random.nextInt(availableNemesis.size());
+                Nemesis nemesis = availableNemesis.remove((randomIndex));
+                selectedNemesis.add(nemesis);
+            }
+
+            Files.writeString(Paths.get("./nemesisList.txt"), objectMapper.writeValueAsString(selectedNemesis));
+        } catch (IOException e) {
+            LOG.log(Level.WARNING, "Error on draw");
+        }
+        return getNemesisList();
+    }
+
+    private ArrayList<Nemesis> getNemesisList() {
+        try {
+            return objectMapper.readValue(Files.readString(Paths.get("./nemesisList.txt")), new TypeReference<>() {
+            });
+        } catch (IOException e) {
+            LOG.log(Level.WARNING, "Error on getNemesisList", e);
+            return new ArrayList<>();
         }
     }
 }

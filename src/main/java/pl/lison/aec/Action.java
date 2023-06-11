@@ -3,7 +3,7 @@ package pl.lison.aec;
 import java.util.Objects;
 
 public enum Action {
-    LIST("list"), ADD("add");
+    LIST("list"), ADD("add"), DRAW("draw");
 
     private final String value;
 
