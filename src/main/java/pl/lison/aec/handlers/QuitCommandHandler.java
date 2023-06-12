@@ -9,7 +9,6 @@ public class QuitCommandHandler extends BaseCommandHandler {
     @Override
     public void handle(UserInputCommand command) {
         throw new QuitApplicationException();
-
     }
 
     @Override

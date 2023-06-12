@@ -8,12 +8,6 @@ public class Nemesis {
     public Nemesis() {
     }
 
-//    public Nemesis(String name, int level, Content content) {
-//        this.name = name;
-//        this.level = level;
-//        this.content = content;
-//    }
-
     public Nemesis(String nemesisName, String nemesisLevel, Content content) {
         this.name = nemesisName;
         this.level = Integer.parseInt(nemesisLevel);
@@ -21,9 +15,7 @@ public class Nemesis {
     }
 
     public Nemesis(String nemesisName, String nemesisLevel, String content) {
-
     }
-
 
 
     public String getName() {

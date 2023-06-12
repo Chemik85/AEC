@@ -48,8 +48,8 @@ public class ContentDao {
     }
 
     public Optional<Content> findOne(String contentName) {
-            return getContents().stream()
-                    .filter(c-> c.getName().equals(contentName))
-                    .findAny();
+        return getContents().stream()
+                .filter(c -> c.getName().equals(contentName))
+                .findAny();
     }
 }

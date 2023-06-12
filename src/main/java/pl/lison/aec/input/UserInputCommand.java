@@ -10,7 +10,6 @@ public class UserInputCommand {
     private Action action;
     private List<String> param;
 
-    //market, add, MarketType, MarketName, MarketCost
     public UserInputCommand(String line) {
         if (line != null) {
             String[] array = line.split("\\,\\s");

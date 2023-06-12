@@ -8,7 +8,6 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 import java.util.logging.Level;
@@ -54,20 +53,14 @@ public class NemesisDao {
          * Method prepared for drawing more nemesis as part of the "expedition" from Aeon's End New Ages
          */
         try {
-            List<List<Nemesis>> nemesisList = Collections.singletonList(findAll());
-            List<Nemesis>[] nemesisArray = nemesisList.toArray(new List[nemesisList.size()]);
+            List<Nemesis> allNemesis = findAll();
 
             Random random = new Random();
             List<Nemesis> selectedNemesis = new ArrayList<>();
 
-            List<Nemesis> availableNemesis = new ArrayList<>();
-            for (List<Nemesis> nemesesAll : nemesisArray) {
-                availableNemesis.addAll(nemesesAll);
-            }
-
             for (int i = 0; i < 1; i++) {
-                int randomIndex = random.nextInt(availableNemesis.size());
-                Nemesis nemesis = availableNemesis.remove((randomIndex));
+                int randomIndex = random.nextInt(allNemesis.size());
+                Nemesis nemesis = allNemesis.remove((randomIndex));
                 selectedNemesis.add(nemesis);
             }
 

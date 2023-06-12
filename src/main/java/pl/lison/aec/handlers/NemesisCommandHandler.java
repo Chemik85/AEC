@@ -4,7 +4,6 @@ import pl.lison.aec.dao.ContentDao;
 import pl.lison.aec.dao.NemesisDao;
 import pl.lison.aec.input.UserInputCommand;
 import pl.lison.aec.model.Content;
-import pl.lison.aec.model.Mage;
 import pl.lison.aec.model.Nemesis;
 
 import java.util.List;
@@ -20,11 +19,6 @@ public class NemesisCommandHandler extends BaseCommandHandler {
     public NemesisCommandHandler() {
         nemesisDao = new NemesisDao();
         contentDao = new ContentDao();
-    }
-
-    public NemesisCommandHandler(NemesisDao nemesisDao, ContentDao contentDao) {
-        this.nemesisDao = nemesisDao;
-        this.contentDao = contentDao;
     }
 
     @Override
@@ -62,7 +56,7 @@ public class NemesisCommandHandler extends BaseCommandHandler {
 
 
                     Content content = contentDao.findOne(contentName)
-                            .orElseThrow(()->new IllegalArgumentException("Content not found " + contentName));
+                            .orElseThrow(() -> new IllegalArgumentException("Content not found " + contentName));
 
                     nemesisDao.add(new Nemesis(nemesisName, nemesisLevel, content));
 

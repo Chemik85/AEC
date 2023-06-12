@@ -12,6 +12,7 @@ import java.util.logging.Logger;
 
 public class AeonsEndCampain {
     private static Logger LOG = Logger.getLogger(AeonsEndCampain.class.getName());
+
     public static void main(String[] args) {
         new AeonsEndCampain().start();
     }
@@ -49,7 +50,7 @@ public class AeonsEndCampain {
                 LOG.info("Quit");
                 applicationLoop = false;
 
-            }catch (IllegalArgumentException e){
+            } catch (IllegalArgumentException e) {
                 LOG.log(Level.WARNING, "validation exception " + e.getMessage());
 
             } catch (Exception e) {

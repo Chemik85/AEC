@@ -8,7 +8,6 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 import java.util.logging.Level;
@@ -52,21 +51,15 @@ public class MageDao {
     public List<Mage> drawAFew(int hawMany) {
 
         try {
-            List<List<Mage>> magesList = Collections.singletonList(findAll());
-            List<Mage>[] magesArray = magesList.toArray(new List[magesList.size()]);
+            List<Mage> allMages = findAll();
 
             Random random = new Random();
             List<Mage> selectedMages = new ArrayList<>();
 
-            List<Mage> availableMages = new ArrayList<>();
-            for (List<Mage> mageList : magesArray){
-                availableMages.addAll(mageList);
-            }
-
             for (int i = 0; i < hawMany; i++) {
 
-                int randomIndex = random.nextInt(availableMages.size());
-                Mage mage = availableMages.remove((randomIndex));
+                int randomIndex = random.nextInt(allMages.size());
+                Mage mage = allMages.remove((randomIndex));
                 selectedMages.add(mage);
             }
 
