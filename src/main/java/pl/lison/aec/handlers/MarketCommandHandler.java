@@ -4,7 +4,6 @@ import pl.lison.aec.dao.ContentDao;
 import pl.lison.aec.dao.MarketDao;
 import pl.lison.aec.input.UserInputCommand;
 import pl.lison.aec.model.Content;
-import pl.lison.aec.model.Mage;
 import pl.lison.aec.model.Market;
 
 import java.util.List;
@@ -38,7 +37,7 @@ public class MarketCommandHandler extends BaseCommandHandler {
             case LIST:
                 LOG.info("list of market...");
 
-                if(!command.getParam().isEmpty()){
+                if (!command.getParam().isEmpty()) {
                     throw new IllegalArgumentException("market list doesn't support any params");
                 }
 
@@ -59,10 +58,10 @@ public class MarketCommandHandler extends BaseCommandHandler {
                     String marketCost = Integer.toString(Integer.parseInt(command.getParam().get(3)));
 
                     Content content = contentDao.findOne(contentName)
-                            .orElseThrow(()->new IllegalArgumentException("Content not found " + contentName));
+                            .orElseThrow(() -> new IllegalArgumentException("Content not found " + contentName));
 
                     marketDao.add(new Market(marketName, marketType, marketCost, content));
-                }catch (NumberFormatException e){
+                } catch (NumberFormatException e) {
                     LOG.log(Level.WARNING, "Cost have to be an integer");
                 }
                 break;
@@ -71,7 +70,6 @@ public class MarketCommandHandler extends BaseCommandHandler {
                 if (command.getParam().size() != 0) {
                     throw new IllegalArgumentException("wrong command format");
                 }
-
 
                 List<Market> marketsList = marketDao.drawAFew();
                 marketsList.forEach(System.out::println);

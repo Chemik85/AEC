@@ -17,8 +17,6 @@ public class HelpCommandHandler extends BaseCommandHandler {
                 "for market: Content name (eg. Aeon's End, New Age), market type (gems, relicts, spells), market name, cost (have to be integer)");
         System.out.println("Example: nemesis, list \n" +
                 "nemesis, add, Aeon's End, Rageborne, 2");
-
-
     }
 
     @Override

@@ -2,17 +2,14 @@ package pl.lison.aec.model;
 
 public class Mage {
     private String name;
-   private Content content;
+    private Content content;
 
     public Mage() {
     }
 
     public Mage(String name, Content content) {
         this.name = name;
-        this.content=content;
-    }
-
-    public Mage(String mageName, String content) {
+        this.content = content;
     }
 
     public String getName() {

@@ -7,7 +7,6 @@ import pl.lison.aec.model.Content;
 import pl.lison.aec.model.Mage;
 
 import java.util.List;
-import java.util.Random;
 import java.util.logging.Logger;
 
 public class MageCommandHandler extends BaseCommandHandler {
@@ -30,7 +29,6 @@ public class MageCommandHandler extends BaseCommandHandler {
     protected String getCommandName() {
         return COMMAND_NAME;
     }
-
 
     @Override
     public void handle(UserInputCommand command) {

@@ -8,13 +8,12 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class NemesisDao {
+public class NemesisDao implements Elements {
     private static Logger LOG = Logger.getLogger(NemesisDao.class.getName());
     private ObjectMapper objectMapper;
 
@@ -22,7 +21,7 @@ public class NemesisDao {
         this.objectMapper = new ObjectMapper();
     }
 
-    private List<Nemesis> getNemeses() {
+    public List<Nemesis> getElements() {
         try {
             return objectMapper.readValue(Files.readString(Paths.get("./nemesis.txt")), new TypeReference<>() {
             });
@@ -33,12 +32,12 @@ public class NemesisDao {
     }
 
     public List<Nemesis> findAll() {
-        return getNemeses();
+        return getElements();
     }
 
     public void add(Nemesis nemesis) {
         try {
-            List<Nemesis> nemeses = getNemeses();
+            List<Nemesis> nemeses = getElements();
             nemeses.add(nemesis);
 
             Files.writeString(Paths.get("./nemesis.txt"), objectMapper.writeValueAsString(nemeses));
@@ -54,20 +53,14 @@ public class NemesisDao {
          * Method prepared for drawing more nemesis as part of the "expedition" from Aeon's End New Ages
          */
         try {
-            List<List<Nemesis>> nemesisList = Collections.singletonList(findAll());
-            List<Nemesis>[] nemesisArray = nemesisList.toArray(new List[nemesisList.size()]);
+            List<Nemesis> allNemesis = findAll();
 
             Random random = new Random();
             List<Nemesis> selectedNemesis = new ArrayList<>();
 
-            List<Nemesis> availableNemesis = new ArrayList<>();
-            for (List<Nemesis> nemesesAll : nemesisArray) {
-                availableNemesis.addAll(nemesesAll);
-            }
-
             for (int i = 0; i < 1; i++) {
-                int randomIndex = random.nextInt(availableNemesis.size());
-                Nemesis nemesis = availableNemesis.remove((randomIndex));
+                int randomIndex = random.nextInt(allNemesis.size());
+                Nemesis nemesis = allNemesis.remove((randomIndex));
                 selectedNemesis.add(nemesis);
             }
 
@@ -75,10 +68,10 @@ public class NemesisDao {
         } catch (IOException e) {
             LOG.log(Level.WARNING, "Error on draw");
         }
-        return getNemesisList();
+        return getDrawnElements();
     }
 
-    private ArrayList<Nemesis> getNemesisList() {
+    public List<Nemesis> getDrawnElements() {
         try {
             return objectMapper.readValue(Files.readString(Paths.get("./nemesisList.txt")), new TypeReference<>() {
             });

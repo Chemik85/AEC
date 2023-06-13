@@ -31,23 +31,22 @@ public class ContentCommandHandler extends BaseCommandHandler {
             case LIST:
                 LOG.info("list of content...");
 
-                if(!command.getParam().isEmpty()){
+                if (!command.getParam().isEmpty()) {
                     throw new IllegalArgumentException("content list doesn't support any params");
                 }
-
                 List<Content> contents = contentDao.findAll();
                 contents.forEach(System.out::println);
                 break;
+
             case ADD:
                 LOG.info("add content");
-
-                if(command.getParam().size()!=1){
+                if (command.getParam().size() != 1) {
                     throw new IllegalArgumentException("wrong command format");
                 }
-
                 String contentName = command.getParam().get(0);
                 contentDao.add(new Content(contentName));
                 break;
+
             default: {
                 throw new IllegalArgumentException(String.format("Unknown action: %s from command: %s",
                         command.getAction(), command.getCommand()));
