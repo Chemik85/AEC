@@ -13,7 +13,7 @@ import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class MageDao {
+public class MageDao implements Elements{
     private static Logger LOG = Logger.getLogger(MageDao.class.getName());
     private ObjectMapper objectMapper;
 
@@ -22,7 +22,7 @@ public class MageDao {
         this.objectMapper = new ObjectMapper();
     }
 
-    private List<Mage> getMages() {
+    public List<Mage> getElements() {
         try {
             return objectMapper.readValue(Files.readString(Paths.get("./mages.txt")), new TypeReference<>() {
             });
@@ -33,12 +33,12 @@ public class MageDao {
     }
 
     public List<Mage> findAll() {
-        return getMages();
+        return getElements();
     }
 
     public void add(Mage mage) {
         try {
-            List<Mage> mages = getMages();
+            List<Mage> mages = getElements();
             mages.add(mage);
 
             Files.writeString(Paths.get("./mages.txt"), objectMapper.writeValueAsString(mages));
@@ -68,10 +68,10 @@ public class MageDao {
         } catch (IOException e) {
             LOG.log(Level.WARNING, "Error on draw");
         }
-        return getMagesList();
+        return getDrawnElements();
     }
 
-    private ArrayList<Mage> getMagesList() {
+    public List<Mage> getDrawnElements() {
         try {
             return objectMapper.readValue(Files.readString(Paths.get("./magesList.txt")), new TypeReference<>() {
             });

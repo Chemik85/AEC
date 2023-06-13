@@ -13,7 +13,7 @@ import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class NemesisDao {
+public class NemesisDao implements Elements {
     private static Logger LOG = Logger.getLogger(NemesisDao.class.getName());
     private ObjectMapper objectMapper;
 
@@ -21,7 +21,7 @@ public class NemesisDao {
         this.objectMapper = new ObjectMapper();
     }
 
-    private List<Nemesis> getNemeses() {
+    public List<Nemesis> getElements() {
         try {
             return objectMapper.readValue(Files.readString(Paths.get("./nemesis.txt")), new TypeReference<>() {
             });
@@ -32,12 +32,12 @@ public class NemesisDao {
     }
 
     public List<Nemesis> findAll() {
-        return getNemeses();
+        return getElements();
     }
 
     public void add(Nemesis nemesis) {
         try {
-            List<Nemesis> nemeses = getNemeses();
+            List<Nemesis> nemeses = getElements();
             nemeses.add(nemesis);
 
             Files.writeString(Paths.get("./nemesis.txt"), objectMapper.writeValueAsString(nemeses));
@@ -68,10 +68,10 @@ public class NemesisDao {
         } catch (IOException e) {
             LOG.log(Level.WARNING, "Error on draw");
         }
-        return getNemesisList();
+        return getDrawnElements();
     }
 
-    private ArrayList<Nemesis> getNemesisList() {
+    public List<Nemesis> getDrawnElements() {
         try {
             return objectMapper.readValue(Files.readString(Paths.get("./nemesisList.txt")), new TypeReference<>() {
             });

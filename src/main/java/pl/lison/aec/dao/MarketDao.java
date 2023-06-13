@@ -12,7 +12,7 @@ import java.util.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class MarketDao {
+public class MarketDao implements Elements{
     private static Logger LOG = Logger.getLogger(MageDao.class.getName());
     private ObjectMapper objectMapper;
 
@@ -21,7 +21,7 @@ public class MarketDao {
         this.objectMapper = new ObjectMapper();
     }
 
-    private List<Market> getMarkets() {
+    public List<Market> getElements() {
         try {
             return objectMapper.readValue(Files.readString(Paths.get("./markets.txt")), new TypeReference<>() {
             });
@@ -32,12 +32,12 @@ public class MarketDao {
     }
 
     public List<Market> findAll() {
-        return getMarkets();
+        return getElements();
     }
 
     public void add(Market market) {
         try {
-            List<Market> markets = getMarkets();
+            List<Market> markets = getElements();
             markets.add(market);
 
             Files.writeString(Paths.get("./markets.txt"), objectMapper.writeValueAsString(markets));
@@ -96,10 +96,10 @@ public class MarketDao {
             LOG.log(Level.WARNING, "Error on draw");
             return Collections.emptyList();
         }
-        return getMarketList();
+        return getDrawnElements();
     }
 
-    private List<Market> getMarketList() {
+    public List<Market> getDrawnElements() {
         try {
             return objectMapper.readValue(Files.readString(Paths.get("./marketList.txt")), new TypeReference<>() {
             });
